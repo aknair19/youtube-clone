@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import store from "./utils/store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
-import WatcPage from "./components/WatcPage";
+import WatcPage from "./components/WatchPage";
 
 function App() {
   const appRouter = createBrowserRouter([

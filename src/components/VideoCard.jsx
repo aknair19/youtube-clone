@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
   return (
@@ -17,11 +18,21 @@ const VideoCard = ({ video }) => {
         <li className="text-sm text-gray-500">
           {video?.snippet?.channelTitle}
         </li>
-        <ul className="flex gap-3">
+        <ul className="flex gap-3 text-xs">
           <li>{video?.statistics?.viewCount} views</li>
           <li>.{video?.snippet?.publishedAt}</li>
         </ul>
       </ul>
+    </div>
+  );
+};
+
+export const AddVideoCard = ({ video }) => {
+  return (
+    <div className="p-1 border-2 border-red-800">
+      <a href="https://www.google.com" target="blank">
+        <VideoCard video={video} />
+      </a>
     </div>
   );
 };
