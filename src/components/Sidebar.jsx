@@ -7,10 +7,12 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   return (
     isMenuOpen && (
-      <div className="p-4 flex flex-col gap-2 shadow-lg h-screen w-1/5">
+      <div className="p-4 flex flex-col gap-2 shadow-lg h-screen w-[250px]  min-w-[200px] max-w-[400px]">
         <div>
           <ul className="py-1 flex flex-col gap-2 font-bold text-lg">
-            <li><Link to='/'>Home</Link></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>Shorts</li>
             <li>Subscriptions</li>
             <li>Youtube Music</li>

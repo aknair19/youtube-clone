@@ -20,7 +20,7 @@ const Header = () => {
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const result = await data.json();
-    setSearchResults(result);
+    setSearchResults(result[1]);
 
     console.log(result);
   };
@@ -53,8 +53,8 @@ const Header = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="border p-[3px] border-black outline-none w-[400px] rounded-tl-xl  rounded-bl-xl  placeholder:px-3 px-3 text-md"
               placeholder="search for anything..."
-              onFocus={()=>setSearchSuggestions(true)}
-              onBlur={()=>setSearchSuggestions(false)}
+              onFocus={() => setSearchSuggestions(true)}
+              onBlur={() => setSearchSuggestions(false)}
             />
           </li>
           <li>
@@ -66,7 +66,7 @@ const Header = () => {
         {searchSuggestions && (
           <ul className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-1">
             {searchResults.length > 0 &&
-              searchResults[1].map((result, i) => (
+              searchResults.map((result, i) => (
                 <li key={i} className="hover:bg-gray-200 cursor-pointer">
                   <span className=" mr-2">🔍</span>
                   {result}
