@@ -3,116 +3,56 @@ import { USER_ICON_URL } from "../constants";
 
 const commentsData = [
   {
+    id: 1,
     name: "Rahul",
     text: "loremm what is this.",
     replies: [
-      {
-        name: "aman",
-        text: "loremm what is this.",
-        replies: [],
-      },
-      {
-        name: "suresh",
-        text: "loremm what is this.",
-        replies: [],
-      },
-      {
-        name: "lokesh",
-        text: "loremm what is this.",
-        replies: [],
-      },
+      { id: 2, name: "aman", text: "loremm what is this.", replies: [] },
+      { id: 3, name: "suresh", text: "loremm what is this.", replies: [] },
+      { id: 4, name: "lokesh", text: "loremm what is this.", replies: [] },
     ],
   },
   {
+    id: 5,
     name: "Aksash",
     text: "loremm what is this.",
     replies: [
+      { id: 6, name: "aman", text: "loremm what is this.", replies: [] },
       {
-        name: "aman",
-        text: "loremm what is this.",
-        replies: [],
-      },
-      {
+        id: 7,
         name: "suresh",
         text: "loremm what is this.",
         replies: [
-          {
-            name: "aman",
-            text: "loremm what is this.",
-            replies: [],
-          },
-          {
-            name: "suresh",
-            text: "loremm what is this.",
-            replies: [],
-          },
-          {
-            name: "lokesh",
-            text: "loremm what is this.",
-            replies: [],
-          },
+          { id: 8, name: "aman", text: "loremm what is this.", replies: [] },
+          { id: 9, name: "suresh", text: "loremm what is this.", replies: [] },
+          { id: 10, name: "lokesh", text: "loremm what is this.", replies: [] },
         ],
       },
-      {
-        name: "lokesh",
-        text: "loremm what is this.",
-        replies: [],
-      },
+      { id: 11, name: "lokesh", text: "loremm what is this.", replies: [] },
     ],
   },
+  { id: 12, name: "Suraj", text: "loremm what is this.", replies: [] },
+  { id: 13, name: "Gokul", text: "loremm what is this.", replies: [] },
   {
-    name: "Suraj",
-    text: "loremm what is this.",
-    replies: [],
-  },
-  {
-    name: "Gokul",
-    text: "loremm what is this.",
-    replies: [],
-  },
-  {
+    id: 14,
     name: "Sojin",
     text: "loremm what is this.",
     replies: [
-      {
-        name: "aman",
-        text: "loremm what is this.",
-        replies: [],
-      },
-      {
-        name: "suresh",
-        text: "loremm what is this.",
-        replies: [
-          {
-            name: "aman",
-            text: "loremm what is this.",
-            replies: [],
-          },
-          {
-            name: "suresh",
-            text: "loremm what is this.",
-            replies: [],
-          },
-          {
-            name: "lokesh",
-            text: "loremm what is this.",
-            replies: [],
-          },
-        ],
-      },
-      {
-        name: "lokesh",
-        text: "loremm what is this.",
-        replies: [],
-      },
+      { id: 15, name: "aman", text: "loremm what is this.", replies: [] },
+      { id: 16, name: "suresh", text: "loremm what is this.", replies: [] },
+      { id: 17, name: "lokesh", text: "loremm what is this.", replies: [] },
     ],
   },
 ];
 export const Comment = ({ data }) => {
   const { text, name, replies } = data;
   return (
-    <div className="px-1 flex border bg-gray-200 rounded-lg">
-      <img alt="user" src={USER_ICON_URL} className="w-10 h-10 " />
+    <div className="px-1 flex  bg-gray-200 rounded-lg items-center gap-2">
+      <img
+        alt="user"
+        src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+        className="w-7 h-7  "
+      />
       <div>
         <p className="font-semibold ">{name}</p>
         <p className="text-gray-600 text-sm">{text}</p>
@@ -122,20 +62,22 @@ export const Comment = ({ data }) => {
 };
 
 export const CommentList = ({ comments }) => {
-  return comments.map((comment, index) => (
-    <div>
-      <Comment data={comment} key={index} />
+  return comments.map((comment) => (
+    <div className="flex flex-col ">
+      <div>
+        <Comment data={comment} key={comment?.id} />
+      </div>
 
-      <div className="pl-5  ml-3 flex flex-col gap-1 border border-l-black">
-        <CommentList comments={comment.replies} key={index} />
+      <div className="pl-5  ml-3 flex flex-col gap-1 border-l border-l-black">
+        <CommentList comments={comment.replies} key={comment?.id} />
       </div>
     </div>
   ));
 };
 const CommentsContainer = () => {
   return (
-    <div >
-      <h1 className="text-lg font-semibold">Comments</h1>
+    <div>
+      <h1 className="text-lg font-semibold">Comments:</h1>
       <CommentList comments={commentsData} />
     </div>
   );
