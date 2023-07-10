@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 import {
   HAMBURGER_URL,
   USER_ICON_URL,
@@ -34,36 +35,43 @@ const Header = () => {
   }, [searchQuery]);
 
   return (
-    <div className="flex  justify-between  items-center p-4 shadow-lg">
-      <ul className="flex items-center w-1/5 space-between gap-4 ">
-        <li onClick={() => toggleMenuHandler()} className="cursor-pointer">
-          <img src={HAMBURGER_URL} alt="hamburger" className="w-10 bg-white " />
+    <div className="flex  justify-between items-center p-4 shadow-lg w-full border border-red-800">
+      <ul className="flex   items-center w-1/5 gap-4   ">
+        <li
+          onClick={() => toggleMenuHandler()}
+          className="cursor-pointer text-3xl"
+        >
+          <GiHamburgerMenu />
         </li>
 
-        <li>
-          <img src={YOUTUBE_ICON_URL} alt="" className="w-28 bg-white " />
+        <li className="">
+          <img
+            src={YOUTUBE_ICON_URL}
+            alt=""
+            className="  sm:hidden  md:block w-32 bg-white "
+          />
         </li>
       </ul>
-      <div className="relative">
-        <ul className="flex flex-1  justify-center  items-center">
-          <li className="">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border p-[3px] border-black outline-none w-[400px] rounded-tl-xl  rounded-bl-xl  placeholder:px-3 px-3 text-md"
-              placeholder="search for anything..."
-              onFocus={() => setSearchSuggestions(true)}
-              onBlur={() => setSearchSuggestions(false)}
-            />
-          </li>
-          <li>
-            <button className="border-y border-r border-y-black border-r-black rounded-tr-xl  rounded-br-xl p-[3px] px-3 bg-gray-200">
-              🔍
-            </button>
-          </li>
-        </ul>
-        {searchSuggestions && (
+
+      <ul className="flex  justify-center   items-center  flex-1 ">
+        <li className=" min-w-[100px]  w-2/4   flex justify-center">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border p-[3px] border-black outline-none    flex-1   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 px-3 text-md"
+            placeholder="search for anything..."
+            onFocus={() => setSearchSuggestions(true)}
+            onBlur={() => setSearchSuggestions(false)}
+          />
+        </li>
+        <li>
+          <button className="border-y border-r border-y-black border-r-black rounded-tr-xl  rounded-br-xl p-[3px] px-3 w-[50px] bg-gray-200">
+            🔍
+          </button>
+        </li>
+      </ul>
+      {/* {searchSuggestions && (
           <ul className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-1">
             {searchResults.length > 0 &&
               searchResults.map((result, i) => (
@@ -73,8 +81,8 @@ const Header = () => {
                 </li>
               ))}
           </ul>
-        )}
-      </div>
+        )} */}
+
       <ul className="flex w-1/5 justify-end items-center">
         <li>
           <img src={USER_ICON_URL} alt="user" className="w-10" />

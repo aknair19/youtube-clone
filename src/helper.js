@@ -191,3 +191,27 @@ export function generateRandomText(length) {
     }
     return result;
 }
+
+
+export function findNthPrime(n) {
+  const primes = [];
+  let number = 2;
+
+  while (primes.length < n) {
+    if (isPrime(number)) {
+      primes.push(number);
+    }
+    number++;
+  }
+
+  return primes[n - 1];
+}
+
+function isPrime(number) {
+  for (let i = 2, sqrt = Math.sqrt(number); i <= sqrt; i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return number > 1;
+}
