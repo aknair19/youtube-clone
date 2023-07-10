@@ -63,12 +63,12 @@ export const Comment = ({ data }) => {
 
 export const CommentList = ({ comments }) => {
   return comments.map((comment) => (
-    <div className="flex flex-col ">
+    <div className="flex flex-col gap-y-2 ">
       <div>
         <Comment data={comment} key={comment?.id} />
       </div>
 
-      <div className="pl-5  ml-3 flex flex-col gap-1 border-l border-l-black">
+      <div className="pl-5  ml-3 flex flex-col  border-l border-l-black">
         <CommentList comments={comment.replies} key={comment?.id} />
       </div>
     </div>
@@ -76,7 +76,7 @@ export const CommentList = ({ comments }) => {
 };
 const CommentsContainer = () => {
   return (
-    <div className="w-4/5">
+    <div className="w-full md:w-4/5 flex flex-col gap-3 ">
       <h1 className="text-lg font-semibold">Comments:</h1>
       <CommentList comments={commentsData} />
     </div>

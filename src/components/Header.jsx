@@ -6,6 +6,8 @@ import {
   USER_ICON_URL,
   YOUTUBE_ICON_URL,
   YOUTUBE_SEARCH_API,
+  GOOGLE_API_KEY,
+  YOUTUBE_SEARCH_RESULTS_API,
 } from "../constants";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
@@ -23,8 +25,16 @@ const Header = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const result = await data.json();
     setSearchResults(result[1]);
+  };
+  const getSearchSuggestionsResults = async (e) => {
+    e.preventDefault();
+    const data = await fetch(
+      `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
+    );
+    const result = await data.json();
 
-    console.log(result);
+    console.log(result?.items);
+    setSearchQuery("");
   };
   useEffect(() => {
     //make an api call on every key press. But as soon as diff between keypress is less than 200ms don't make api call
@@ -50,40 +60,43 @@ const Header = () => {
         </li>
       </ul>
 
-      <ul className="flex  justify-center   items-center  flex-1">
-        <li className="   w-1/4 md:w-2/4   flex justify-center relative">
+      <form
+        className="flex  justify-center   items-center  flex-1"
+        onSubmit={(e) => getSearchSuggestionsResults(e)}
+      >
+        <div className="   w-[80px] md:w-2/4   flex justify-center relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border p-[3px] border-black outline-none  flex-1   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-3 text-md"
+            className="border p-[3px] border-black outline-none  w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-3 text-md"
             placeholder="search for videos..."
             onFocus={() => setSearchSuggestions(true)}
             onBlur={() => setSearchSuggestions(false)}
           />
 
           {searchSuggestions && (
-            <ul className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
+            <div className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
               {searchResults.length > 0 &&
                 searchResults.map((result, i) => (
-                  <li key={i} className="hover:bg-gray-200 cursor-pointer">
+                  <p key={i} className="hover:bg-gray-200 cursor-pointer">
                     <span className="mr-2">
                       <GrSearch className="text-xl inline-block" />
                     </span>
                     {result}
-                  </li>
+                  </p>
                 ))}
-            </ul>
+            </div>
           )}
-        </li>
-        <li className="w-[30px]">
+        </div>
+        <div className=" w-[20px] md:w-[2rem]">
           <button className="border-y border-r  border-y-black border-r-black rounded-tr-xl  flex justify-center  rounded-br-xl p-[5px] px-5 w-full  bg-gray-200">
             <div>
               <GrSearch className="text-xl   " />
             </div>
           </button>
-        </li>
-      </ul>
+        </div>
+      </form>
 
       <ul className="flex w-1/5 justify-end items-center">
         <li>

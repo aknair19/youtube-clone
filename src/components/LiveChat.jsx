@@ -48,7 +48,8 @@ const LiveChat = () => {
       >
         <input
           type="text"
-          className="border w-full border-black rounded-md flex-1  outline-none"
+          className="border w-full border-black rounded-md flex-1  outline-none placeholder:px-1 px-2 placeholder:text-sm"
+          placeholder="Send Message"
           value={chatMessage}
           onChange={(e) => setChatMessage(e.target.value)}
         />
