@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const ButtonList = () => {
   return (
-    <div className="flex flex-wrap justify-start  w-full gap-2 p-4 px-[40px] ">
+    <div className="flex flex-wrap justify-start  w-full gap-2 p-4 px-[20px] md:[40px] ">
       {buttonList.map((list, i) => (
         <Button key={i} name={list.name} />
       ))}

@@ -50,13 +50,13 @@ const Header = () => {
         </li>
       </ul>
 
-      <ul className="flex  justify-center   items-center  flex-1 ">
+      <ul className="flex  justify-center   items-center  flex-1">
         <li className="   w-1/4 md:w-2/4   flex justify-center relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border p-[3px] border-black outline-none  flex-1    rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-3 text-md"
+            className="border p-[3px] border-black outline-none  flex-1   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-3 text-md"
             placeholder="search for videos..."
             onFocus={() => setSearchSuggestions(true)}
             onBlur={() => setSearchSuggestions(false)}
@@ -68,7 +68,6 @@ const Header = () => {
                 searchResults.map((result, i) => (
                   <li key={i} className="hover:bg-gray-200 cursor-pointer">
                     <span className="mr-2">
-                      
                       <GrSearch className="text-xl inline-block" />
                     </span>
                     {result}
@@ -77,16 +76,18 @@ const Header = () => {
             </ul>
           )}
         </li>
-        <li>
-          <button className="border-y border-r border-y-black border-r-black rounded-tr-xl  min-w-[20px]  rounded-br-xl p-[5px] px-3 w-[50px] bg-gray-200">
-            <GrSearch className="text-xl" />
+        <li className="w-[30px]">
+          <button className="border-y border-r  border-y-black border-r-black rounded-tr-xl  flex justify-center  rounded-br-xl p-[5px] px-5 w-full  bg-gray-200">
+            <div>
+              <GrSearch className="text-xl   " />
+            </div>
           </button>
         </li>
       </ul>
 
       <ul className="flex w-1/5 justify-end items-center">
         <li>
-          <img src={USER_ICON_URL} alt="user" className="w-10" />
+          <img src={USER_ICON_URL} alt="user" className="w-[2.5rem]" />
         </li>
       </ul>
     </div>

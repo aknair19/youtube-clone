@@ -76,7 +76,7 @@ export const CommentList = ({ comments }) => {
 };
 const CommentsContainer = () => {
   return (
-    <div>
+    <div className="w-4/5">
       <h1 className="text-lg font-semibold">Comments:</h1>
       <CommentList comments={commentsData} />
     </div>
