@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { GrSearch } from "react-icons/gr";
 import {
   HAMBURGER_URL,
   USER_ICON_URL,
@@ -35,7 +36,7 @@ const Header = () => {
   }, [searchQuery]);
 
   return (
-    <div className="flex  justify-between items-center p-4 shadow-lg w-full border border-red-800">
+    <div className="flex  justify-between items-center p-4 shadow-lg w-full ">
       <ul className="flex   items-center w-1/5 gap-4   ">
         <li
           onClick={() => toggleMenuHandler()}
@@ -44,17 +45,13 @@ const Header = () => {
           <GiHamburgerMenu />
         </li>
 
-        <li className="">
-          <img
-            src={YOUTUBE_ICON_URL}
-            alt=""
-            className="  sm:hidden  md:block w-32 bg-white "
-          />
+        <li className="hidden md:block">
+          <img src={YOUTUBE_ICON_URL} alt="" className="w-32 bg-white " />
         </li>
       </ul>
 
       <ul className="flex  justify-center   items-center  flex-1 ">
-        <li className=" min-w-[100px]  w-2/4   flex justify-center">
+        <li className=" min-w-[50px]  w-2/4   flex justify-center">
           <input
             type="text"
             value={searchQuery}
@@ -66,8 +63,8 @@ const Header = () => {
           />
         </li>
         <li>
-          <button className="border-y border-r border-y-black border-r-black rounded-tr-xl  rounded-br-xl p-[3px] px-3 w-[50px] bg-gray-200">
-            🔍
+          <button className="border-y border-r border-y-black border-r-black rounded-tr-xl  rounded-br-xl p-[5px] px-3 w-[50px] bg-gray-200">
+            <GrSearch className="text-xl"/>
           </button>
         </li>
       </ul>
