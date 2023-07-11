@@ -2,26 +2,31 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../utils/store";
 import { Link } from "react-router-dom";
+import { GiCancel } from "react-icons/gi";
 
 import { YOUTUBE_ICON_URL } from "../constants";
+import { classMenu, toggleMenu } from "../utils/appSlice";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const dispatch = useDispatch();
   return (
     isMenuOpen && (
-      <div
-        className="p-4 flex flex-col gap-2 shadow-lg h-auto absolute    w-[250px]  min-w-[200px] max-w-[400px]  z-40 bg-white cursor-pointer border  "
-     
-      >
-        <div className="">
-          <div className="md:hidden ">
-            <img src={YOUTUBE_ICON_URL} alt="" className="w-16 bg-white " />
+      <div className="p-4 flex flex-col gap-2 shadow-lg h-auto absolute    w-[250px]  min-w-[200px] max-w-[400px]  z-40 bg-white cursor-pointer border top-0 left-0  ">
+        <button
+          className="absolute right-3 text-red-800 text-2xl"
+          onClick={()=>dispatch(toggleMenu())}
+        >
+          <GiCancel />
+        </button>
+        <div className="flex flex-col gap-2">
+          <div className="mt-5">
+            <img src={YOUTUBE_ICON_URL} alt="" className="w-24 bg-white " />
           </div>
           <div>
             <ul className="py-1 flex flex-col gap-2 font-bold text-lg ">
               <Link to="/">
-                <li className=" hover:bg-gray-200 hover:p-[3px] hover:rounded-lg p-[3px] ">
+                <li className=" hover:bg-gray-200 hover:p-[3px] hover:rounded-lg p-[3px]  ">
                   Home
                 </li>
               </Link>

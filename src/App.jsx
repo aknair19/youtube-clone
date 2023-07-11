@@ -15,11 +15,20 @@ function App() {
       children: [
         {
           path: "/",
-          element: <MainContainer />,
+          element: (
+            <div>
+              <Header /> <MainContainer />
+            </div>
+          ),
         },
         {
           path: "watch",
-          element: <WatcPage />,
+          element: (
+            <div className="w-full">
+              <Header />
+              <WatcPage />,
+            </div>
+          ),
         },
         {
           path: "demo",
@@ -31,7 +40,6 @@ function App() {
   return (
     <Provider store={store}>
       <div className="w-full">
-        <Header />
         <RouterProvider router={appRouter} />
       </div>
     </Provider>

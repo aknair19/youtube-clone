@@ -13,7 +13,7 @@ const WatchPage = () => {
     dispatch(classMenu());
   }, []);
   return (
-    <div className=" flex  flex-col   justify-between w-full   p-4  gap-2">
+    <div className=" flex  flex-col   justify-start  w-full   p-4  gap-2">
       <div className="flex flex-col md:flex-row w-full gap-1 border  ">
         <div className="  w-full   ">
           <iframe
@@ -28,6 +28,10 @@ const WatchPage = () => {
       </div>
 
       <div className=" w-full ">
+        <div className="w-3/4 py-2 text-2xl text-gray-600 font-bold">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
+          neque.
+        </div>
         <CommentsContainer />
       </div>
     </div>

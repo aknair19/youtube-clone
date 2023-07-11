@@ -2,30 +2,72 @@ import React, { useEffect, useState } from "react";
 import { YOUTUBE_POPULAR_VIDEOS } from "../constants";
 import VideoCard, { AddVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getVideos } from "../utils/searchSlice";
 
 const VideoContainer = () => {
-  const [videos, setVideos] = useState([]);
+  const dispatch = useDispatch();
+  const videos = useSelector((store) => store.search.popularVideos);
+  const searchVideos = useSelector(
+    (store) => store.search.searchSuggestionData
+  );
   const getPopularVideos = async () => {
     const data = await fetch(YOUTUBE_POPULAR_VIDEOS);
     const result = await data.json();
-    setVideos(result?.items);
+    dispatch(getVideos(result?.items));
+
+    console.log(result?.items);
   };
 
   useEffect(() => {
     getPopularVideos();
   }, []);
-
-  return (
+  console.log(searchVideos);
+  return videos === null ? (
+    "loading"
+  ) : (
     <div className="flex  w-full flex-wrap px-4 gap-4  justify-center items-stretch ">
-      <AddVideoCard video={videos[0]} />
-
-      {videos.map((video) => {
-        return (
-          <Link to={`/watch?v=${video?.id}`} key={video?.id}>
-            <VideoCard video={video} />
-          </Link>
-        );
-      })}
+      {searchVideos !== null ? (
+        <>
+          {searchVideos.map((video) => {
+            return (
+              <Link
+                to={`/watch?v=${video?.id?.videoId}`}
+                key={video?.id?.videoId}
+              >
+                {/* thumbnail title,channelTitle,publishedat,viewcount */}
+                <VideoCard
+                  id={video?.id}
+                  thumbnail={video?.snippet?.thumbnails?.medium?.url}
+                  title={video?.snippet?.title}
+                  channelTitle={video?.snippet?.channelTitle}
+                  releaseDate={video?.snippet?.publishTime}
+                  viewsCount={video?.statistics?.viewCount}
+                />
+              </Link>
+            );
+          })}
+        </>
+      ) : (
+        <>
+          {" "}
+          {videos.map((video) => {
+            return (
+              <Link to={`/watch?v=${video?.id}`} key={video?.id}>
+                {/* thumbnail title,channelTitle,publishedat,viewcount */}
+                <VideoCard
+                  id={video?.id}
+                  thumbnail={video?.snippet?.thumbnails?.medium?.url}
+                  title={video?.snippet?.title}
+                  channelTitle={video?.snippet?.channelTitle}
+                  releaseDate={video?.snippet?.publishedAt}
+                  viewsCount={video?.statistics?.viewCount}
+                />
+              </Link>
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };

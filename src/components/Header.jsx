@@ -9,22 +9,31 @@ import {
   GOOGLE_API_KEY,
   YOUTUBE_SEARCH_RESULTS_API,
 } from "../constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import {
+  getSearchSuggestionData,
+  getSearchSuggestionQuery,
+} from "../utils/searchSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
+
   const [searchSuggestions, setSearchSuggestions] = useState(false);
   const dispatch = useDispatch();
-
+  const searchSuggestionList = useSelector(
+    (store) => store.search.searchSuggestionQuery
+  );
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const result = await data.json();
-    setSearchResults(result[1]);
+    dispatch(getSearchSuggestionQuery(result[1]));
+    console.log(result);
   };
   const getSearchSuggestionsResults = async (e) => {
     e.preventDefault();
@@ -32,9 +41,10 @@ const Header = () => {
       `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
     );
     const result = await data.json();
-
-    console.log(result?.items);
+    dispatch(getSearchSuggestionData(result?.items));
+    console.log(result);
     setSearchQuery("");
+    navigate("/");
   };
   useEffect(() => {
     //make an api call on every key press. But as soon as diff between keypress is less than 200ms don't make api call
@@ -45,8 +55,12 @@ const Header = () => {
     };
   }, [searchQuery]);
 
+  // const handleResultOnClick = (i) => {
+  //   console.log(searchSuggestionList[i], "world");
+  // };
+
   return (
-    <div className="flex  justify-between items-center p-4 shadow-lg w-full ">
+    <div className="flex  justify-between items-center p-4 shadow-lg w-full relative ">
       <ul className="flex   items-center w-1/5 gap-4   ">
         <li
           onClick={() => toggleMenuHandler()}
@@ -56,7 +70,10 @@ const Header = () => {
         </li>
 
         <li className="hidden md:block">
-          <img src={YOUTUBE_ICON_URL} alt="" className="w-32 bg-white " />
+          <Link to="/">
+            {" "}
+            <img src={YOUTUBE_ICON_URL} alt="" className="w-32 bg-white " />
+          </Link>
         </li>
       </ul>
 
@@ -77,14 +94,17 @@ const Header = () => {
 
           {searchSuggestions && (
             <div className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
-              {searchResults.length > 0 &&
-                searchResults.map((result, i) => (
-                  <p key={i} className="hover:bg-gray-200 cursor-pointer">
+              {searchSuggestionList.length > 0 &&
+                searchSuggestionList.map((result, i) => (
+                  <button
+                    key={i}
+                    className="hover:bg-gray-200 cursor-pointer block"
+                  >
                     <span className="mr-2">
                       <GrSearch className="text-xl inline-block" />
                     </span>
                     {result}
-                  </p>
+                  </button>
                 ))}
             </div>
           )}
