@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
 import { GOOGLE_API_KEY, YOUTUBE_GET_VIDEO_BY_ID } from "../constants";
+import Scroll from "./Scroll";
 
 const WatchPage = () => {
   const [videoData, setVideoData] = useState(null);
@@ -29,6 +30,7 @@ const WatchPage = () => {
     <div className=" flex  flex-col   justify-start  w-full   p-4  gap-2">
       <div className="flex flex-col md:flex-row w-full gap-1 border  ">
         <div className="w-full">
+          <Scroll />
           {!videoData ? (
             <div className="w-full h-full animate-ping bg-grap-400"></div>
           ) : (
