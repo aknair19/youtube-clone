@@ -38,15 +38,17 @@ const Header = () => {
     console.log(result);
   };
   const getSearchSuggestionsResults = async (e) => {
-    e.preventDefault();
-    navigate(`results?search_query=${searchQuery}`);
-    const data = await fetch(
-      `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
-    );
-    const result = await data.json();
-    dispatch(getSearchSuggestionData(result?.items));
-    console.log(result);
-    setSearchQuery("");
+    if (searchQuery.length > 0) {
+      e.preventDefault();
+      navigate(`results?search_query=${searchQuery}`);
+      const data = await fetch(
+        `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
+      );
+      const result = await data.json();
+      dispatch(getSearchSuggestionData(result?.items));
+      console.log(result);
+      setSearchQuery("");
+    }
   };
   useEffect(() => {
     //make an api call on every key press. But as soon as diff between keypress is less than 200ms don't make api call
