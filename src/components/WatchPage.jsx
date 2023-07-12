@@ -26,10 +26,12 @@ const WatchPage = () => {
     getVideoDetails();
   }, []);
   return (
-    videoData && (
-      <div className=" flex  flex-col   justify-start  w-full   p-4  gap-2">
-        <div className="flex flex-col md:flex-row w-full gap-1 border  ">
-          <div className="  w-full   ">
+    <div className=" flex  flex-col   justify-start  w-full   p-4  gap-2">
+      <div className="flex flex-col md:flex-row w-full gap-1 border  ">
+        <div className="w-full">
+          {!videoData ? (
+            <div className="w-full h-full animate-ping bg-grap-400"></div>
+          ) : (
             <iframe
               className="w-full h-full  "
               src={`https://www.youtube.com/embed/${searchParams.get("v")}`}
@@ -37,18 +39,18 @@ const WatchPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
-          </div>
-          <LiveChat />
+          )}
         </div>
-
-        <div className=" w-full ">
-          <div className="w-3/4 py-2 text-xl text-gray-600 font-bold">
-            {videoData?.snippet?.title}
-          </div>
-          <CommentsContainer />
-        </div>
+        <LiveChat />
       </div>
-    )
+
+      <div className=" w-full ">
+        <div className="w-3/4 py-2 text-xl text-gray-600 font-bold">
+          {videoData?.snippet?.title}
+        </div>
+        <CommentsContainer />
+      </div>
+    </div>
   );
 };
 
