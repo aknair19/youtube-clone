@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { findNthPrime } from "../helper";
+import { findNthPrime } from "../utils/helper";
 
 const Demo = () => {
   const [input, setInput] = useState(0);

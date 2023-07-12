@@ -4,7 +4,7 @@ import {
   GOOGLE_API_KEY,
   YOUTUBE_GET_VIDEO_BY_ID,
   kFormatter,
-} from "../constants";
+} from "../utils/constants";
 import moment from "moment/moment";
 
 const VideoCard = ({

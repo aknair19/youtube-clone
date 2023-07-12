@@ -1,3 +1,13 @@
+import {
+  MdHome,
+  MdSubscriptions,
+  MdOutlineVideoLibrary,
+  MdOutlineHistory,
+  MdOutlineVideoSettings,
+  MdOutlineHistoryToggleOff,
+} from "react-icons/md";
+import { AiFillLike } from "react-icons/ai";
+
 export const HAMBURGER_URL =
   "https://cdn3.iconfinder.com/data/icons/minimal-website-ui-kit/100/ld_menu_closed-512.png";
 
@@ -28,3 +38,41 @@ export const kFormatter = (num) => {
     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
     : Math.sign(num) * Math.abs(num);
 };
+
+export const sidebarData = [
+  {
+    name: "Home",
+    icon: <MdHome />,
+    to: "/",
+  },
+  {
+    name: "Subscriptions",
+    icon: <MdSubscriptions />,
+    to: "/",
+  },
+  {
+    name: "MdVideoLibrary",
+    icon: <MdOutlineVideoLibrary />,
+    to: "/",
+  },
+  {
+    name: "History",
+    icon: <MdOutlineHistory />,
+    to: "/",
+  },
+  {
+    name: "Your Videos",
+    icon: <MdOutlineVideoSettings />,
+    to: "/",
+  },
+  {
+    name: "Watch Later",
+    icon: <MdOutlineHistoryToggleOff />,
+    to: "/",
+  },
+  {
+    name: "Liked Videos",
+    icon: <AiFillLike />,
+    to: "/",
+  },
+];

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChatMessage from "./ChatMessage";
 import { addMessage } from "../utils/chatSlice";
-import { generateRandomName, generateRandomText } from "../helper";
+import { generateRandomName, generateRandomText } from "../utils/helper";
 
 const LiveChat = () => {
   const [chatMessage, setChatMessage] = useState("");
@@ -49,7 +49,7 @@ const LiveChat = () => {
         <input
           type="text"
           className="border w-full border-black rounded-md flex-1  outline-none placeholder:px-1 px-2 placeholder:text-sm"
-          placeholder="Send Message"
+          placeholder="Send a Message"
           value={chatMessage}
           onChange={(e) => setChatMessage(e.target.value)}
         />

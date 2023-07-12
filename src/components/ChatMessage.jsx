@@ -3,11 +3,7 @@ import React from "react";
 const ChatMessage = ({ name, message }) => {
   return (
     <div className="flex  gap-2 width-full p-1 rounded-lg px-2  items-center ">
-      <img
-        alt="user"
-        src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
-        className="w-7 h-7  "
-      />
+      <p className="w-8 h-8 rounded-full bg-purple-600 text-white font-bold text-center p-1">{name.substring(0,1)}</p>
       <div className="flex  flex-wrap items-center gap-1">
         <p className="font-semibold">{name}</p>
         <p className="text-sm">{message}</p>

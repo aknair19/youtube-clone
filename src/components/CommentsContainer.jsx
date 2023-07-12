@@ -1,46 +1,46 @@
 import React from "react";
-import { USER_ICON_URL } from "../constants";
+import { USER_ICON_URL } from "../utils/constants";
 
 const commentsData = [
   {
     id: 1,
-    name: "Rahul",
+    name: "Roy",
     text: "loremm what is this.",
     replies: [
-      { id: 2, name: "aman", text: "loremm what is this.", replies: [] },
-      { id: 3, name: "suresh", text: "loremm what is this.", replies: [] },
-      { id: 4, name: "lokesh", text: "loremm what is this.", replies: [] },
+      { id: 2, name: "Dwayne", text: "loremm what is this.", replies: [] },
+      { id: 3, name: "Rock", text: "loremm what is this.", replies: [] },
+      { id: 4, name: "Bruce", text: "loremm what is this.", replies: [] },
     ],
   },
   {
     id: 5,
-    name: "Aksash",
+    name: "Maxx",
     text: "loremm what is this.",
     replies: [
-      { id: 6, name: "aman", text: "loremm what is this.", replies: [] },
+      { id: 6, name: "Kate", text: "loremm what is this.", replies: [] },
       {
         id: 7,
-        name: "suresh",
+        name: "Sam",
         text: "loremm what is this.",
         replies: [
-          { id: 8, name: "aman", text: "loremm what is this.", replies: [] },
-          { id: 9, name: "suresh", text: "loremm what is this.", replies: [] },
-          { id: 10, name: "lokesh", text: "loremm what is this.", replies: [] },
+          { id: 8, name: "Dexter", text: "loremm what is this.", replies: [] },
+          { id: 9, name: "Sheldon", text: "loremm what is this.", replies: [] },
+          { id: 10, name: "Joe", text: "loremm what is this.", replies: [] },
         ],
       },
-      { id: 11, name: "lokesh", text: "loremm what is this.", replies: [] },
+      { id: 11, name: "Chris", text: "loremm what is this.", replies: [] },
     ],
   },
-  { id: 12, name: "Suraj", text: "loremm what is this.", replies: [] },
-  { id: 13, name: "Gokul", text: "loremm what is this.", replies: [] },
+  { id: 12, name: "Max", text: "loremm what is this.", replies: [] },
+  { id: 13, name: "Evans", text: "loremm what is this.", replies: [] },
   {
     id: 14,
     name: "Sojin",
     text: "loremm what is this.",
     replies: [
-      { id: 15, name: "aman", text: "loremm what is this.", replies: [] },
-      { id: 16, name: "suresh", text: "loremm what is this.", replies: [] },
-      { id: 17, name: "lokesh", text: "loremm what is this.", replies: [] },
+      { id: 15, name: "Brad", text: "loremm what is this.", replies: [] },
+      { id: 16, name: "Leonardo", text: "loremm what is this.", replies: [] },
+      { id: 17, name: "Lorem", text: "loremm what is this.", replies: [] },
     ],
   },
 ];

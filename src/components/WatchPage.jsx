@@ -4,7 +4,7 @@ import { classMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
-import { GOOGLE_API_KEY, YOUTUBE_GET_VIDEO_BY_ID } from "../constants";
+import { GOOGLE_API_KEY, YOUTUBE_GET_VIDEO_BY_ID } from "../utils/constants";
 import Scroll from "./Scroll";
 
 const WatchPage = () => {
@@ -36,7 +36,9 @@ const WatchPage = () => {
           ) : (
             <iframe
               className="w-full h-full  "
-              src={`https://www.youtube.com/embed/${searchParams.get("v")}`}
+              src={`https://www.youtube.com/embed/${searchParams.get(
+                "v"
+              )}?autoplay=1`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

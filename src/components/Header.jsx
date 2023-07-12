@@ -10,7 +10,7 @@ import {
   YOUTUBE_SEARCH_API,
   GOOGLE_API_KEY,
   YOUTUBE_SEARCH_RESULTS_API,
-} from "../constants";
+} from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import {

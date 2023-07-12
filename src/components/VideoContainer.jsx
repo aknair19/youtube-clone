@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_POPULAR_VIDEOS } from "../constants";
+import { YOUTUBE_POPULAR_VIDEOS } from "../utils/constants";
 import VideoCard, { AddVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
