@@ -6,6 +6,7 @@ import { GiCancel } from "react-icons/gi";
 
 import { YOUTUBE_ICON_URL } from "../constants";
 import { classMenu, toggleMenu } from "../utils/appSlice";
+import { SiYoutube } from "react-icons/si";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -20,8 +21,9 @@ const Sidebar = () => {
           <GiCancel />
         </button>
         <div className="flex flex-col gap-2">
-          <div className="mt-5">
-            <img src={YOUTUBE_ICON_URL} alt="" className="w-24 bg-white " />
+        <div className=" md:flex gap-1 hidden items-center  ">
+            <SiYoutube className="text-4xl text-red-600" />
+            <span className="text-lg font-bold">MyYoutube</span>
           </div>
           <div>
             <ul className="py-1 flex flex-col gap-2 font-bold text-lg ">

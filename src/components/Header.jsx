@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { SiYoutube } from "react-icons/si";
+
 import { GrSearch } from "react-icons/gr";
 import {
   HAMBURGER_URL,
@@ -37,6 +39,7 @@ const Header = () => {
   };
   const getSearchSuggestionsResults = async (e) => {
     e.preventDefault();
+    navigate(`results?search_query=${searchQuery}`);
     const data = await fetch(
       `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
     );
@@ -44,7 +47,6 @@ const Header = () => {
     dispatch(getSearchSuggestionData(result?.items));
     console.log(result);
     setSearchQuery("");
-    navigate("/");
   };
   useEffect(() => {
     //make an api call on every key press. But as soon as diff between keypress is less than 200ms don't make api call
@@ -61,20 +63,19 @@ const Header = () => {
 
   return (
     <div className="flex  justify-between items-center p-4 shadow-lg w-full relative ">
-      <ul className="flex   items-center w-1/5 gap-4   ">
+      <ul className="flex   items-center w-1/5 gap-6   ">
         <li
           onClick={() => toggleMenuHandler()}
           className="cursor-pointer text-3xl"
         >
           <GiHamburgerMenu />
         </li>
-
-        <li className="hidden md:block">
-          <Link to="/">
-            {" "}
-            <img src={YOUTUBE_ICON_URL} alt="" className="w-32 bg-white " />
-          </Link>
-        </li>
+        <a href="/">
+          <li className=" md:flex gap-1 hidden items-center  ">
+            <SiYoutube className="text-4xl text-red-600" />
+            <span className="text-lg font-bold">MyYoutube</span>
+          </li>
+        </a>
       </ul>
 
       <form

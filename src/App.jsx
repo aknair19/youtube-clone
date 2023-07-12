@@ -22,6 +22,15 @@ function App() {
           ),
         },
         {
+          path: "results",
+          element: (
+            <div className="w-full">
+              <Header />
+              <MainContainer />,
+            </div>
+          ),
+        },
+        {
           path: "watch",
           element: (
             <div className="w-full">

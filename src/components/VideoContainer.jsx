@@ -4,6 +4,7 @@ import VideoCard, { AddVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../utils/searchSlice";
+import ShimmerUI from "./Shimmer";
 
 const VideoContainer = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const VideoContainer = () => {
   }, []);
   console.log(searchVideos);
   return videos === null ? (
-    "loading"
+    <ShimmerUI />
   ) : (
     <div className="flex  w-full flex-wrap px-4 gap-4  justify-center items-stretch ">
       {searchVideos !== null ? (
