@@ -4,6 +4,7 @@ import {
   GOOGLE_API_KEY,
   YOUTUBE_GET_VIDEO_BY_ID,
   kFormatter,
+  numFormatter,
 } from "../utils/constants";
 import moment from "moment/moment";
 
@@ -26,15 +27,15 @@ const VideoCard = ({
 
   //thumbnail title,channelTitle,publishedat,viewcount
   return (
-    <div className="flex flex-col gap-1 shadow-lg w-[320px]   rounded-xl  ">
+    <div className="flex flex-col gap-1 shadow-lg w-[320px] h-[260px]   rounded-xl  ">
       <div>
         <img className="rounded-xl " src={thumbnail} alt="thumbnail" />
       </div>
-      <ul className="flex flex-col flex-wrap p-2">
-        <li className="font-semibold text-md ">{title}</li>
+      <ul className="flex flex-col  p-2 w-full">
+        <li className="font-semibold text-md   truncate overflow-hidden">{title}</li>
         <li className="text-sm text-gray-500">{channelTitle}</li>
         <ul className="flex gap-3 text-xs">
-          <li>{kFormatter(viewsCount)} views</li>
+          <li>{numFormatter(viewsCount)} views</li>
           <li>{moment(releaseDate).fromNow()}</li>
         </ul>
       </ul>

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { SiYoutube } from "react-icons/si";
-
+import { BiVideoPlus } from "react-icons/bi";
 import { GrSearch } from "react-icons/gr";
+import { BiSolidUserCircle } from "react-icons/bi";
+
+import { IoMdNotificationsOutline } from "react-icons/io";
 import {
   HAMBURGER_URL,
   USER_ICON_URL,
@@ -40,7 +43,7 @@ const Header = () => {
   const getSearchSuggestionsResults = async (e) => {
     if (searchQuery.length > 0) {
       e.preventDefault();
-      navigate(`results?search_query=${searchQuery}`);
+      navigate(`/results?search_query=${searchQuery}`);
       const data = await fetch(
         `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
       );
@@ -65,7 +68,7 @@ const Header = () => {
 
   return (
     <div className="flex  justify-between items-center p-4 shadow-lg w-full relative ">
-      <ul className="flex   items-center w-1/5 gap-6   ">
+      <ul className="flex   items-center   w-1/6  gap-6   ">
         <li
           onClick={() => toggleMenuHandler()}
           className="cursor-pointer text-3xl"
@@ -81,15 +84,15 @@ const Header = () => {
       </ul>
 
       <form
-        className="flex  justify-center   items-center  flex-1"
+        className="flex  justify-center   items-center    flex-1 "
         onSubmit={(e) => getSearchSuggestionsResults(e)}
       >
-        <div className="   w-[80px] md:w-2/4   flex justify-center relative">
+        <div className="  w-2/4    flex  justify-start  md:justify-center relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border p-[3px] border-black outline-none  w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-3 text-md"
+            className="border p-[3px] border-black outline-none  w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-1 truncate text-md"
             placeholder="search for videos..."
             onFocus={() => setSearchSuggestions(true)}
             onBlur={() => setSearchSuggestions(false)}
@@ -121,9 +124,15 @@ const Header = () => {
         </div>
       </form>
 
-      <ul className="flex w-1/5 justify-end items-center">
+      <ul className="flex      md:w-1/6     justify-end items-center gap-1 overflow-hidden ">
+        <li className="hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
+          <BiVideoPlus className="text-2xl" />
+        </li>
+        <li className="hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
+          <IoMdNotificationsOutline className="text-2xl" />
+        </li>
         <li>
-          <img src={USER_ICON_URL} alt="user" className="w-[2.5rem]" />
+          <BiSolidUserCircle className="text-3xl" />
         </li>
       </ul>
     </div>

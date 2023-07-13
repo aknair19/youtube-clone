@@ -21,19 +21,21 @@ const Sidebar = () => {
           <GiCancel />
         </button>
         <div className="flex flex-col gap-2">
-          <div className=" md:flex gap-1 hidden items-center  ">
-            <SiYoutube className="text-4xl text-red-600" />
-            <span className="text-lg font-bold">MyYoutube</span>
-          </div>
+          <a href="/">
+            <div className=" flex gap-1  items-center  ">
+              <SiYoutube className="text-4xl text-red-600" />
+              <span className="text-lg font-bold">MyYoutube</span>
+            </div>
+          </a>
           <div>
             <ul className="py-1 flex flex-col gap-2 font-bold text-lg ">
               {sidebarData.map((data, i) => {
                 return (
                   <Link to={data?.to}>
-                  <li className=" hover:bg-gray-200 hover:p-[3px] hover:rounded-lg p-[3px] flex gap-2 items-center   ">
-                    <span className=" text-2xl ">{data.icon}</span>{" "}
-                    {data.name}
-                  </li>
+                    <li className=" hover:bg-gray-200 hover:p-[3px] hover:rounded-lg p-[3px] flex gap-2 items-center   ">
+                      <span className=" text-2xl ">{data.icon}</span>{" "}
+                      {data.name}
+                    </li>
                   </Link>
                 );
               })}
