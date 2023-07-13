@@ -6,6 +6,7 @@ const searchSlice = createSlice({
     searchSuggestionQuery: null,
     searchSuggestionData: null,
     popularVideos: null,
+    searchQuery: "",
   },
   reducers: {
     getSearchSuggestionQuery: (state, action) => {
@@ -17,9 +18,16 @@ const searchSlice = createSlice({
     getVideos: (state, action) => {
       state.popularVideos = action.payload;
     },
+    getSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
   },
 });
 
-export const { getSearchSuggestionQuery, getSearchSuggestionData, getVideos } =
-  searchSlice.actions;
+export const {
+  getSearchSuggestionQuery,
+  getSearchSuggestionData,
+  getVideos,
+  getSearchQuery,
+} = searchSlice.actions;
 export default searchSlice.reducer;
