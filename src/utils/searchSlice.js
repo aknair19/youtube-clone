@@ -21,6 +21,9 @@ const searchSlice = createSlice({
     getSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
+    clearSearchQuery: (state, action) => {
+      state.searchQuery = "";
+    },
   },
 });
 
@@ -29,5 +32,6 @@ export const {
   getSearchSuggestionData,
   getVideos,
   getSearchQuery,
+  clearSearchQuery,
 } = searchSlice.actions;
 export default searchSlice.reducer;
