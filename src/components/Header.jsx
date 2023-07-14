@@ -106,14 +106,14 @@ const Header = () => {
       </ul>
 
       <form
-        className="flex  justify-center   items-center    flex-1 "
+        className="flex justify-center   items-center    flex-1 "
         onSubmit={(e) => getSearchSuggestionsResults(e)}
         onBlur={() =>
           searchQuery1.length === 0 && setSearchSuggestions(!searchSuggestions)
         }
       >
-        <div className="  flex-1     flex  justify-center  md:justify-center ">
-          <div className=" flex justify-between w-2/4 relative">
+        <div className="    flex-1     flex  justify-center  md:justify-center ">
+          <div className=" flex justify-between w-3/4 md:w-2/4 relative">
             <input
               type="text"
               value={searchQuery1}
@@ -162,10 +162,10 @@ const Header = () => {
       </form>
 
       <ul className="flex      md:w-1/6     justify-end items-center gap-1 overflow-hidden ">
-        <li className="hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
+        <li className="hidden md:block hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
           <BiVideoPlus className="text-2xl" />
         </li>
-        <li className="hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
+        <li className="hover:bg-gray-200 hover:rounded-full hover:p-2 p-2 hidden md:block ">
           <IoMdNotificationsOutline className="text-2xl" />
         </li>
         <li>
