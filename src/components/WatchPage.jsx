@@ -32,26 +32,28 @@ const WatchPage = () => {
         <div className="w-full">
           <Scroll />
           {!videoData ? (
-            <div className="w-full h-full animate-ping bg-grap-400"></div>
+            <div className="w-full  h-full animate-ping bg-grap-400"></div>
           ) : (
-            <iframe
-              className="w-full h-full  "
-              src={`https://www.youtube.com/embed/${searchParams.get(
-                "v"
-              )}?autoplay=1`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+            <div className="flex flex-col w-full">
+              <iframe
+                className="w-full h-screen"
+                src={`https://www.youtube.com/embed/${searchParams.get(
+                  "v"
+                )}?autoplay=1`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+              <div className="w-full py-2 text-xl border-t  text-gray-600 font-bold">
+                {videoData?.snippet?.title}
+              </div>
+            </div>
           )}
         </div>
         <LiveChat />
       </div>
 
       <div className=" w-full ">
-        <div className="w-3/4 py-2 text-xl text-gray-600 font-bold">
-          {videoData?.snippet?.title}
-        </div>
         <CommentsContainer />
       </div>
     </div>

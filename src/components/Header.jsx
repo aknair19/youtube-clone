@@ -51,6 +51,7 @@ const Header = () => {
       dispatch(getSearchSuggestionData(result?.items));
       console.log(result);
       setSearchQuery("");
+      setSearchSuggestions(!searchSuggestions);
     }
   };
   useEffect(() => {
@@ -86,6 +87,9 @@ const Header = () => {
       <form
         className="flex  justify-center   items-center    flex-1 "
         onSubmit={(e) => getSearchSuggestionsResults(e)}
+        onBlur={() =>
+          searchQuery.length === 0 && setSearchSuggestions(!searchSuggestions)
+        }
       >
         <div className="  w-2/4    flex  justify-start  md:justify-center relative">
           <input
@@ -94,23 +98,25 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="border p-[3px] border-black outline-none  w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-1 truncate text-md"
             placeholder="search for videos..."
-            onFocus={() => setSearchSuggestions(true)}
-            onBlur={() => setSearchSuggestions(false)}
+            onFocus={() => setSearchSuggestions(!searchSuggestions)}
           />
 
           {searchSuggestions && (
-            <div className="absolute z-40 bg-white w-full shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
+            <div className="absolute z-40 bg-white w-full  shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
               {searchSuggestionList.length > 0 &&
                 searchSuggestionList.map((result, i) => (
-                  <button
-                    key={i}
-                    className="hover:bg-gray-200 cursor-pointer block"
-                  >
-                    <span className="mr-2">
-                      <GrSearch className="text-xl inline-block" />
-                    </span>
-                    {result}
-                  </button>
+                  <div className="hover:bg-gray-200 w-full">
+                    <button
+                      key={i}
+                      className=" cursor-pointer block "
+                      onClick={() => setSearchQuery(result)}
+                    >
+                      <span className="mr-2">
+                        <GrSearch className="text-xl inline-block" />
+                      </span>
+                      {result}
+                    </button>
+                  </div>
                 ))}
             </div>
           )}
