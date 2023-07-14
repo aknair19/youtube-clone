@@ -11,7 +11,7 @@ import moment from "moment/moment";
 const VideoCard = ({
   thumbnail,
   title,
-  id,
+
   channelTitle,
   releaseDate,
   viewsCount,
@@ -32,8 +32,10 @@ const VideoCard = ({
         <img className="rounded-xl " src={thumbnail} alt="thumbnail" />
       </div>
       <ul className="flex flex-col  p-2 w-full">
-        <li className="font-semibold text-md   truncate overflow-hidden">{title}</li>
-        <li className="text-sm text-gray-500">{channelTitle}</li>
+        <li className="font-semibold text-md   truncate overflow-hidden">
+          {title}
+        </li>
+        <li className="text-sm text-gray-500 truncate">{channelTitle}</li>
         <ul className="flex gap-3 text-xs">
           <li>{numFormatter(viewsCount)} views</li>
           <li>{moment(releaseDate).fromNow()}</li>

@@ -17,13 +17,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import {
+  getSearchQuery,
   getSearchSuggestionData,
   getSearchSuggestionQuery,
 } from "../utils/searchSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchQuery1 = useSelector((store) => store.search.searchQuery);
+
   const navigate = useNavigate();
 
   const [searchSuggestions, setSearchSuggestions] = useState(false);
@@ -35,23 +37,31 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const result = await data.json();
-    dispatch(getSearchSuggestionQuery(result[1]));
-    console.log(result);
+    try {
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery1);
+      const result = await data.json();
+      dispatch(getSearchSuggestionQuery(result[1]));
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const getSearchSuggestionsResults = async (e) => {
-    if (searchQuery.length > 0) {
+    try {
       e.preventDefault();
-      navigate(`/results?search_query=${searchQuery}`);
-      const data = await fetch(
-        `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery}&key=${GOOGLE_API_KEY}`
-      );
-      const result = await data.json();
-      dispatch(getSearchSuggestionData(result?.items));
-      console.log(result);
-      setSearchQuery("");
-      setSearchSuggestions(!searchSuggestions);
+      if (searchQuery1.length > 0) {
+        navigate(`/results?search_query=${searchQuery1}`);
+        const data = await fetch(
+          `${YOUTUBE_SEARCH_RESULTS_API}q=${searchQuery1}&key=${GOOGLE_API_KEY}`
+        );
+        const result = await data.json();
+        dispatch(getSearchSuggestionData(result?.items));
+        console.log(result);
+
+        setSearchSuggestions(!searchSuggestions);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   useEffect(() => {
@@ -61,7 +71,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery1]);
 
   // const handleResultOnClick = (i) => {
   //   console.log(searchSuggestionList[i], "world");
@@ -88,14 +98,14 @@ const Header = () => {
         className="flex  justify-center   items-center    flex-1 "
         onSubmit={(e) => getSearchSuggestionsResults(e)}
         onBlur={() =>
-          searchQuery.length === 0 && setSearchSuggestions(!searchSuggestions)
+          searchQuery1.length === 0 && setSearchSuggestions(!searchSuggestions)
         }
       >
         <div className="  w-2/4    flex  justify-start  md:justify-center relative">
           <input
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery1}
+            onChange={(e) => dispatch(getSearchQuery(e.target.value))}
             className="border p-[3px] border-black outline-none  w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm  px-1 truncate text-md"
             placeholder="search for videos..."
             onFocus={() => setSearchSuggestions(!searchSuggestions)}
@@ -105,18 +115,18 @@ const Header = () => {
             <div className="absolute z-40 bg-white w-full  shadow-lg rounded-xl p-2 py-3 px-4 mt-8">
               {searchSuggestionList.length > 0 &&
                 searchSuggestionList.map((result, i) => (
-                  <div className="hover:bg-gray-200 w-full">
-                    <button
-                      key={i}
-                      className=" cursor-pointer block "
-                      onClick={() => setSearchQuery(result)}
-                    >
+                  <button
+                    className="  flex hover:bg-gray-200 w-full  cursor-pointer "
+                    key={i}
+                    onClick={() => dispatch(getSearchQuery(result))}
+                  >
+                    <span>
                       <span className="mr-2">
                         <GrSearch className="text-xl inline-block" />
                       </span>
                       {result}
-                    </button>
-                  </div>
+                    </span>
+                  </button>
                 ))}
             </div>
           )}

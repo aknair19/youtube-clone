@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_POPULAR_VIDEOS } from "../utils/constants";
 import VideoCard, { AddVideoCard } from "./VideoCard";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideos } from "../utils/searchSlice";
 import ShimmerUI from "./Shimmer";
+import SearchVideoCard from "./SearchVideoCard";
 
 const VideoContainer = () => {
   const dispatch = useDispatch();
@@ -24,12 +25,17 @@ const VideoContainer = () => {
     getPopularVideos();
   }, []);
   console.log(searchVideos);
+
+  const [searchParams] = useSearchParams();
+
   return videos === null ? (
     <ShimmerUI />
   ) : (
-    <div className="flex  w-full flex-wrap px-4 gap-4  justify-center items-stretch ">
+    <div className="flex flex-col  w-full flex-wrap px-4 gap-4 mt-4  justify-center items-center ">
+      
       {searchVideos !== null ? (
-        <>
+        <div className="flex flex-col w-full md:w-3/4 gap-3 p-2">
+          <p className="w-full font-bold text-lg">Search Results for <span className="text-red-600 italic">{searchParams.get('search_query')}</span></p>
           {searchVideos.map((video) => {
             return (
               <Link
@@ -37,25 +43,27 @@ const VideoContainer = () => {
                 key={video?.id?.videoId}
               >
                 {/* thumbnail title,channelTitle,publishedat,viewcount */}
-                <VideoCard
+                <SearchVideoCard
                   id={video?.id}
                   thumbnail={video?.snippet?.thumbnails?.medium?.url}
                   title={video?.snippet?.title}
                   channelTitle={video?.snippet?.channelTitle}
-                  releaseDate={video?.snippet?.publishTime}
-                  viewsCount={video?.statistics?.viewCount}
+               description={video?.snippet?.description}
+               
                 />
               </Link>
             );
           })}
-        </>
+        </div>
+        
       ) : (
-        <>
+        <div className="flex  w-full flex-wrap px-4 gap-4  justify-center items-stretch">
           {" "}
           {videos.map((video) => {
             return (
               <Link to={`/watch?v=${video?.id}`} key={video?.id}>
                 {/* thumbnail title,channelTitle,publishedat,viewcount */}
+
                 <VideoCard
                   id={video?.id}
                   thumbnail={video?.snippet?.thumbnails?.medium?.url}
@@ -67,7 +75,7 @@ const VideoContainer = () => {
               </Link>
             );
           })}
-        </>
+        </div>
       )}
     </div>
   );

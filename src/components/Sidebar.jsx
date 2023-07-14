@@ -31,7 +31,7 @@ const Sidebar = () => {
             <ul className="py-1 flex flex-col gap-2 font-bold text-lg ">
               {sidebarData.map((data, i) => {
                 return (
-                  <Link to={data?.to}>
+                  <Link to={data?.to} key={i}>
                     <li className=" hover:bg-gray-200 hover:p-[3px] hover:rounded-lg p-[3px] flex gap-2 items-center   ">
                       <span className=" text-2xl ">{data.icon}</span>{" "}
                       {data.name}
