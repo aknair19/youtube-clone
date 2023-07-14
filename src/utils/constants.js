@@ -24,7 +24,9 @@ export const YOUTUBE_POPULAR_VIDEOS =
   GOOGLE_API_KEY;
 
 export const YOUTUBE_SEARCH_API =
-  "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://youtube-search-suggestion.onrender.com/?q=";
+
+// https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=
 
 export const OFFSET_LIVE_CHAT = 25;
 

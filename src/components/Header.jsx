@@ -42,12 +42,22 @@ const Header = () => {
     try {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery1);
       const result = await data.json();
-      dispatch(getSearchSuggestionQuery(result[1]));
-      console.log(result);
+      dispatch(getSearchSuggestionQuery(result?.data[1]));
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const getVideosByCORS = async () => {
+  //   try {
+  //     const data = await fetch("http://localhost:8000/?q=" + searchQuery1);
+  //     const result = await data.json();
+  //     console.log("from server", result?.data[1]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const getSearchSuggestionsResults = async (e) => {
     try {
       e.preventDefault();
@@ -58,7 +68,6 @@ const Header = () => {
         );
         const result = await data.json();
         dispatch(getSearchSuggestionData(result?.items));
-        console.log(result);
 
         setSearchSuggestions(!searchSuggestions);
       }
