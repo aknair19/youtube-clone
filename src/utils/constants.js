@@ -17,7 +17,7 @@ export const YOUTUBE_ICON_URL =
 export const USER_ICON_URL =
   "https://static.vecteezy.com/system/resources/previews/000/550/731/original/user-icon-vector.jpg";
 
-export const GOOGLE_API_KEY = "AIzaSyBfhQuVJBeSm6iVyl247S5s-GXnmyZfJlc";
+export const GOOGLE_API_KEY = "AIzaSyDYDj8HiIJtcwepyJBESow6i0F_-qoWex0";
 
 export const YOUTUBE_POPULAR_VIDEOS =
   " https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
@@ -34,12 +34,12 @@ export const YOUTUBE_SEARCH_RESULTS_API =
 export const YOUTUBE_GET_VIDEO_BY_ID = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=`;
 
 export function numFormatter(num) {
-  if(num > 999 && num < 1000000){
-      return (num/1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million 
-  }else if(num > 1000000){
-      return (num/1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million 
-  }else if(num < 900){
-      return num; // if value < 1000, nothing to do
+  if (num > 999 && num < 1000000) {
+    return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
+  } else if (num > 1000000) {
+    return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
+  } else if (num < 900) {
+    return num; // if value < 1000, nothing to do
   }
 }
 
