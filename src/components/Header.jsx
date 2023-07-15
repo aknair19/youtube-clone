@@ -70,6 +70,7 @@ const Header = () => {
         dispatch(getSearchSuggestionData(result?.items));
 
         setSearchSuggestions(!searchSuggestions);
+        dispatch(getSearchSuggestionQuery(""));
       }
     } catch (error) {
       console.log(error);
@@ -89,8 +90,8 @@ const Header = () => {
   // };
 
   return (
-    <div className="flex  justify-between items-center p-4 shadow-lg w-full relative ">
-      <ul className="flex   items-center   w-1/6  gap-6   ">
+    <div className="flex  justify-between items-center p-2 md:p-4 shadow-lg w-full relative ">
+      <ul className="flex   items-center   w-[40px] md:w-[220px]  md:gap-6  ">
         <li
           onClick={() => toggleMenuHandler()}
           className="cursor-pointer text-3xl"
@@ -106,14 +107,14 @@ const Header = () => {
       </ul>
 
       <form
-        className="flex justify-center   items-center    flex-1 "
+        className="flex justify-center   items-center    md:w-3/6 b"
         onSubmit={(e) => getSearchSuggestionsResults(e)}
         onBlur={() =>
           searchQuery1.length === 0 && setSearchSuggestions(!searchSuggestions)
         }
       >
-        <div className="    flex-1     flex  justify-center  md:justify-center ">
-          <div className=" flex justify-between w-3/4 md:w-2/4 relative">
+        <div className="flex-1     flex  justify-center  md:justify-center ">
+          <div className=" flex justify-between w-3/4 md:w-3/4 relative">
             <input
               type="text"
               value={searchQuery1}
@@ -161,7 +162,7 @@ const Header = () => {
         </div>
       </form>
 
-      <ul className="flex      md:w-1/6     justify-end items-center gap-1 overflow-hidden ">
+      <ul className="flex      w-1/6 md:w-[150px]    justify-end items-center gap-1 overflow-hidden ">
         <li className="hidden md:block hover:bg-gray-200 hover:rounded-full hover:p-2 p-2">
           <BiVideoPlus className="text-2xl" />
         </li>
