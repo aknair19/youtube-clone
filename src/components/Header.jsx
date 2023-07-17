@@ -121,7 +121,10 @@ const Header = () => {
               onChange={(e) => dispatch(getSearchQuery(e.target.value))}
               className="   border-y border-l border-y-black border-l-black p-[3px]     w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm   truncate text-md"
               placeholder="Search"
-              onFocus={() => setSearchSuggestions(!searchSuggestions)}
+              onFocus={() =>
+                searchQuery1.length > 0 &&
+                setSearchSuggestions(!searchSuggestions)
+              }
             />
             {searchQuery1.length > 0 && (
               <button
