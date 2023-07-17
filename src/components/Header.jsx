@@ -40,9 +40,11 @@ const Header = () => {
   };
   const getSearchSuggestions = async () => {
     try {
-      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery1);
-      const result = await data.json();
-      dispatch(getSearchSuggestionQuery(result?.data[1]));
+      if (searchQuery1.length > 0) {
+        const data = await fetch(YOUTUBE_SEARCH_API + searchQuery1);
+        const result = await data.json();
+        dispatch(getSearchSuggestionQuery(result?.data[1]));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -121,10 +123,7 @@ const Header = () => {
               onChange={(e) => dispatch(getSearchQuery(e.target.value))}
               className="   border-y border-l border-y-black border-l-black p-[3px]     w-full   rounded-tl-xl  rounded-bl-xl  placeholder:px-3 placeholder:text-xs md:placeholder:text-sm   truncate text-md"
               placeholder="Search"
-              onFocus={() =>
-                searchQuery1.length > 0 &&
-                setSearchSuggestions(!searchSuggestions)
-              }
+              onFocus={() => setSearchSuggestions(!searchSuggestions)}
             />
             {searchQuery1.length > 0 && (
               <button
