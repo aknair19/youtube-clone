@@ -136,7 +136,7 @@ const Header = () => {
 
             {searchSuggestions && (
               <div className="absolute z-40 bg-white w-full  shadow-lg rounded-xl p-2 py-3 px-4 mt-9">
-                {searchSuggestionList.length > 0 &&
+                {searchSuggestionList !== null &&
                   searchSuggestionList.map((result, i) => (
                     <button
                       className="  flex hover:bg-gray-200 w-full  cursor-pointer "
